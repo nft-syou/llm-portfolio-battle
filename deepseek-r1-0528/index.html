@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Portfolio | エンジニアポートフォリオ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#8b5cf6',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        accent: '#06b6d4',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #0c4a6e, #075985);
+            background-size: 400% 400%;
+        }
+
+        .card-glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+        }
+
+        .project-card {
+            transition: all 0.4s ease;
+            perspective: 1000px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(6, 182, 212, 0.25);
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #0ea5e9;
+            white-space: nowrap;
+            letter-spacing: .15em;
+            animation:
+                typing 3.5s steps(30, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #0ea5e9;
+            }
+        }
+
+        .neon-text {
+            text-shadow: 0 0 5px rgba(14, 165, 233, 0.5),
+                0 0 15px rgba(14, 165, 233, 0.3),
+                0 0 30px rgba(14, 165, 233, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-darker text-slate-200 font-sans overflow-x-hidden">
+    <!-- ヘッダー -->
+    <header class="fixed w-full z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">DEV<span class="text-primary">.</span>PORTFOLIO</div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8 font-medium">
+                    <li><a href="#home" class="hover:text-primary transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-primary transition">About</a></li>
+                    <li><a href="#skills" class="hover:text-primary transition">Skills</a></li>
+                    <li><a href="#projects" class="hover:text-primary transition">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-primary transition">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center pt-16 animate-gradient">
+        <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    <span class="block">ハイパフォーマンスな</span>
+                    <span class="block neon-text">Webエンジニア</span>
+                </h1>
+                <div class="typewriter text-xl md:text-2xl text-primary font-mono mb-6 mt-4">
+                    &lt;コードで未来を創造する/&gt;
+                </div>
+                <p class="text-lg md:text-xl mb-8 max-w-lg">
+                    革新的なソリューションとエレガントなコードでビジネス課題を解決します。パフォーマンスとユーザー体験を重視した開発を得意としています。
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#projects"
+                        class="bg-primary hover:bg-accent text-white font-bold py-3 px-6 rounded-full transition transform hover:-translate-y-1 shadow-lg shadow-primary/30">
+                        プロジェクトを見る
+                    </a>
+                    <a href="#contact"
+                        class="border-2 border-primary text-primary hover:bg-primary/10 font-bold py-3 px-6 rounded-full transition">
+                        コンタクト
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full filter blur-3xl opacity-20 animate-pulse-slow">
+                    </div>
+                    <div
+                        class="relative bg-gray-800 border-2 border-slate-700 rounded-2xl p-1 w-64 h-64 md:w-80 md:h-80 overflow-hidden">
+                        <div class="bg-gray-900 w-full h-full rounded-2xl flex items-center justify-center">
+                            <div class="text-center">
+                                <div
+                                    class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-br from-primary to-secondary p-1 mb-4">
+                                    <div
+                                        class="bg-gray-900 w-full h-full rounded-full flex items-center justify-center">
+                                        <span class="text-6xl">👨‍💻</span>
+                                    </div>
+                                </div>
+                                <div class="font-mono text-primary">Takashi Tanaka</div>
+                                <div class="text-sm text-slate-400">Full Stack Developer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アバウトセクション -->
+    <section id="about" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/3">
+                    <div class="card-glass rounded-2xl p-8 shadow-xl">
+                        <h3 class="text-xl font-bold mb-4">経歴</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="bg-primary rounded-full p-2 mr-4 mt-1">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">東京大学 情報理工学部</h4>
+                                    <p class="text-sm text-slate-400">2015 - 2019</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-secondary rounded-full p-2 mr-4 mt-1">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">株式会社テクノロジーソリューションズ</h4>
+                                    <p class="text-sm text-slate-400">2019 - 2021</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-accent rounded-full p-2 mr-4 mt-1">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">フリーランスエンジニア</h4>
+                                    <p class="text-sm text-slate-400">2021 - 現在</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="md:w-1/3">
+                    <div
+                        class="bg-gradient-to-br from-primary/10 to-secondary/10 border border-slate-700 rounded-2xl p-8 h-full">
+                        <h3 class="text-xl font-bold mb-4">私の哲学</h3>
+                        <p class="mb-4">
+                            優れたソフトウェアは、技術的卓越性とユーザー中心設計の融合から生まれます。私はこのバランスを追求します。
+                        </p>
+                        <p class="mb-4">
+                            コードは単なるツールではなく、創造性と問題解決を表現するアートです。美しいコードは美しい体験を生み出します。
+                        </p>
+                        <div class="flex items-center mt-6">
+                            <div class="mr-4 text-4xl text-primary">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="font-mono italic">
+                                "優れたエンジニアは問題を解決する、卓越したエンジニアは問題を再定義する"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/3">
+                    <div class="card-glass rounded-2xl p-8">
+                        <h3 class="text-xl font-bold mb-4">コーディングスタイル</h3>
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-2">クリーン & メンテナブル</h4>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-2">パフォーマンス最適化</h4>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-2">テストカバレッジ</h4>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-2">ドキュメンテーション</h4>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スキルセクション -->
+    <section id="skills" class="py-20 bg-darker">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">技術<span class="gradient-text">スキル</span></h2>
+                <p class="max-w-2xl mx-auto">最先端の技術スタックとベストプラクティスを駆使して、高品質なソリューションを提供します</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">JavaScript</h3>
+                    <p class="text-sm text-slate-400">ES6+, TypeScript</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">React</h3>
+                    <p class="text-sm text-slate-400">Next.js, Redux</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Node.js</h3>
+                    <p class="text-sm text-slate-400">Express, NestJS</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">データベース</h3>
+                    <p class="text-sm text-slate-400">MongoDB, PostgreSQL</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">クラウド</h3>
+                    <p class="text-sm text-slate-400">AWS, Firebase</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">モバイル</h3>
+                    <p class="text-sm text-slate-400">React Native</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">DevOps</h3>
+                    <p class="text-sm text-slate-400">Docker, CI/CD</p>
+                </div>
+                <div class="skill-badge card-glass rounded-xl p-6 text-center">
+                    <div class="text-4xl text-primary mb-3">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">UI/UX</h3>
+                    <p class="text-sm text-slate-400">Figma, Tailwind</p>
+                </div>
+            </div>
+
+            <div class="mt-16 card-glass rounded-2xl p-8 max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold mb-6 text-center">技術スタックの進化</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">TypeScript</div>
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">GraphQL</div>
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">WebAssembly</div>
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">WebSockets</div>
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">WebRTC</div>
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">Three.js</div>
+                    <div class="bg-slate-800 px-4 py-2 rounded-full text-sm">TensorFlow.js</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- プロジェクトセクション -->
+    <section id="projects" class="py-20 bg-gradient-to-b from-slate-900 to-darker">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">プロジェクト<span class="gradient-text">実績</span></h2>
+                <p class="max-w-2xl mx-auto">ビジネス価値を生み出すソリューション開発の実績</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card card-glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600')] bg-cover bg-center mix-blend-overlay opacity-30">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-black/50 text-white px-3 py-1 rounded-full text-sm">React / Node.js</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">FinTechダッシュボード</h3>
+                        <p class="text-slate-400 mb-4">リアルタイム金融データ可視化プラットフォーム。複雑なデータを直感的なインターフェースで表示。</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">詳細を見る</a>
+                            <a href="#" class="text-slate-400 hover:text-white">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card card-glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-secondary to-purple-500 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=600')] bg-cover bg-center mix-blend-overlay opacity-30">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-black/50 text-white px-3 py-1 rounded-full text-sm">Next.js / MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Eコマースプラットフォーム</h3>
+                        <p class="text-slate-400 mb-4">高性能なECサイト構築。サーバーレスアーキテクチャによるスケーラブルなソリューション。</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">詳細を見る</a>
+                            <a href="#" class="text-slate-400 hover:text-white">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card card-glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-r from-accent to-green-500 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600')] bg-cover bg-center mix-blend-overlay opacity-30">
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-black/50 text-white px-3 py-1 rounded-full text-sm">React Native /
+                                Firebase</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">フィットネストラッキングアプリ</h3>
+                        <p class="text-slate-400 mb-4">AIを活用したパーソナライズされたフィットネスコーチングアプリ。50万ダウンロード突破。</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium hover:underline">詳細を見る</a>
+                            <a href="#" class="text-slate-400 hover:text-white">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-primary font-bold hover:underline">
+                    すべてのプロジェクトを見る
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンタクトセクション -->
+    <section id="contact" class="py-20 bg-darker">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">コンタクト</h2>
+                <p class="max-w-2xl mx-auto">新しいプロジェクトやコラボレーションのご相談はお気軽にお問い合わせください</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="card-glass rounded-2xl p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-6">連絡先情報</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="text-primary text-xl mr-4 mt-1">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Email</h4>
+                                        <p class="text-slate-400">contact@devportfolio.example</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="text-primary text-xl mr-4 mt-1">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">GitHub</h4>
+                                        <p class="text-slate-400">github.com/devportfolio</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="text-primary text-xl mr-4 mt-1">
+                                        <i class="fab fa-twitter"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Twitter</h4>
+                                        <p class="text-slate-400">@dev_portfolio</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="text-primary text-xl mr-4 mt-1">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">所在地</h4>
+                                        <p class="text-slate-400">東京都渋谷区</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold mb-6">メッセージを送る</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <input type="text" placeholder="お名前"
+                                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <input type="email" placeholder="メールアドレス"
+                                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <textarea placeholder="メッセージ" rows="4"
+                                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                                </div>
+                                <button type="submit"
+                                    class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition">
+                                    メッセージを送信
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 py-12 border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-2xl font-bold gradient-text mb-4 md:mb-0">DEV<span
+                        class="text-primary">.</span>PORTFOLIO</div>
+                <div class="text-slate-400 text-center mb-4 md:mb-0">
+                    &copy; 2023 Takashi Tanaka. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-primary text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-primary text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-primary text-xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-primary text-xl">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- スクロールトップボタン -->
+    <button id="scrollTop"
+        class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // スクロールトップボタン
+        const scrollTopButton = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopButton.classList.remove('opacity-0', 'invisible');
+                scrollTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                scrollTopButton.classList.remove('opacity-100', 'visible');
+                scrollTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ナビゲーションリンクのスムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Portfolio | [あなたの名前]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- ヘッダー -->
+    <header class="fixed w-full z-50">
+        <nav class="flex justify-between items-center p-6 bg-gray-800/50 backdrop-blur-sm">
+            <h1 class="text-2xl font-bold tracking-widest">PORTFOLIO</h1>
+            <div class="flex gap-6">
+                <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
+                <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="pt-20 min-h-screen flex items-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h2 class="text-5xl font-bold mb-4">Innovative Engineer</h2>
+                    <p class="text-xl mb-6">Full-Stack Developer & Problem Solver</p>
+                    <div class="flex gap-4">
+                        <a href="#contact"
+                            class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition-colors">Contact
+                            Me</a>
+                        <a href="#projects"
+                            class="border-2 hover:bg-white/10 px-6 py-2 rounded-full transition-colors">See Projects</a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="profile.jpg" alt="Profile" class="rounded-2xl shadow-2xl w-96 h-96 object-cover mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スキルセクション -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-6 rounded-xl bg-gray-800/50 hover:bg-gray-700/50 transition-colors">
+                    <div class="flex items-center gap-4 mb-4">
+                        <i class="fab fa-react text-blue-400 text-2xl"></i>
+                        <h3 class="text-xl">Frontend Development</h3>
+                    </div>
+                    <p>React, Next.js, Tailwind CSS, Typescript</p>
+                </div>
+                <!-- 他のスキルカードを追加 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- プロジェクトセクション -->
+    <section id="projects" class="py-20 bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow">
+                    <img src="project1.jpg" alt="Project"
+                        class="w-full h-64 object-cover group-hover:scale-105 transition-transform">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">AI Chatbot Platform</h3>
+                        <p class="mb-4">Next.js + Node.js + MongoDB</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="flex items-center gap-2 hover:text-blue-400">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="flex items-center gap-2 hover:text-blue-400">
+                                <i class="fas fa-globe"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 他のプロジェクトカードを追加 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- コンタクトセクション -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Contact Me</h2>
+            <div class="max-w-2xl mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <input type="text" placeholder="Name" class="w-full p-3 rounded-lg bg-gray-800/50">
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Email" class="w-full p-3 rounded-lg bg-gray-800/50">
+                    </div>
+                    <div>
+                        <textarea placeholder="Message" class="w-full p-3 rounded-lg bg-gray-800/50 h-48"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg transition-colors">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="py-12 border-t border-gray-700/50">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2023 [あなたの名前]. All rights reserved.</p>
+        </div>
+        </section>
+
+        <script>
+            // スムーズスクロール
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // フォーム送信処理（実際の処理はサーバー側で実装必要）
+            document.querySelector('form').addEventListener('submit', e => {
+                e.preventDefault();
+                alert('メッセージを送信しました！');
+                e.target.reset();
+            });
+        </script>
+
+</body>
+
+</html>

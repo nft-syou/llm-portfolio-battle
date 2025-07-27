@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI言語モデル ポートフォリオサイト比較</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .link-list {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .model-link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .model-link:last-child {
+            border-bottom: none;
+        }
+
+        .model-link:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+        
+        .prompt-section {
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .prompt-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        code {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+        }
+        
+        .copy-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+        
+        .info-section {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .info-section p {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        
+        .info-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .info-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🤖 AI言語モデル ポートフォリオサイト比較</h1>
+    
+    <div class="info-section">
+        <p>このサイトは <a href="https://lmarena.ai/" target="_blank">LMArena</a> のBattleモードで各AI言語モデルに同じプロンプトを与えて作成されたポートフォリオサイトを比較・検証できます。</p>
+    </div>
+    
+    <div class="prompt-section">
+        <h2>使用プロンプト</h2>
+        <div class="prompt-box">
+            <code>めちゃくちゃかっこいいエンジニアのポートフォリをサイトをhtml+tailwindcssでつくって</code>
+            <button class="copy-btn" onclick="copyPrompt()">コピー</button>
+        </div>
+    </div>
+
+    <div class="link-list">
+        <a href="claude-3-5-sonnet-20241022/index.html" class="model-link">Claude 3.5 Sonnet</a>
+        <a href="deepseek-r1-0528/index.html" class="model-link">DeepSeek R1</a>
+        <a href="folsom-072125-1/index.html" class="model-link">Folsom</a>
+        <a href="gemini-2.5-pro/index.html" class="model-link">Gemini 2.5 Pro</a>
+        <a href="kraken-072125-2/index.html" class="model-link">Kraken</a>
+        <a href="qwen3-coder-480b-a35b-instruct/index.html" class="model-link">Qwen3 Coder</a>
+        <a href="summit/index.html" class="model-link">Summit</a>
+        <a href="zenith/index.html" class="model-link">Zenith</a>
+    </div>
+
+    <script>
+        function copyPrompt() {
+            const text = "めちゃくちゃかっこいいエンジニアのポートフォリをサイトをhtml+tailwindcssでつくって";
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'コピー完了!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

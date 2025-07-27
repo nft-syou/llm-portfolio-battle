@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Portfolio | [Your Name]</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-gray-800 bg-opacity-90 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="#" class="text-2xl font-bold text-white">&lt;/&gt; [Your Name]</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden" id="hero">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+                <div class="mt-12 lg:mt-0">
+                    <h1
+                        class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl animate-fade-in">
+                        Fullstack Engineer & Tech Enthusiast
+                    </h1>
+                    <p class="mt-4 max-w-md text-xl text-gray-400 animate-fade-in delay-100">
+                        Building the future with code and coffee ☕️
+                    </p>
+
+                    <div class="mt-8 flex space-x-4 animate-fade-in delay-200">
+                        <a href="#contact"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-lg">
+                            Let's Connect
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 md:mt-0 md:relative">
+                    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
+                        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-auto lg:h-full animate-float"
+                            src="https://via.placeholder.com/800x500.png?text=Tech+Illustration"
+                            alt="Coding illustration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-fade-in">Technical Skills</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+                <div class="skill-card p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <i class="fa-brands fa-javascript fa-3x text-yellow-400 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-white">JavaScript</h3>
+                </div>
+                <div class="skill-card p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <i class="fa-brands fa-react fa-3x text-blue-400 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-white">React</h3>
+                </div>
+                <div class="skill-card p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <i class="fa-brands fa-python fa-3x text-yellow-400 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-white">Python</h3>
+                </div>
+                <div class="skill-card p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <i class="fa-brands fa-node fa-3x text-green-400 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-white">Node.js</h3>
+                </div>
+                <div class="skill-card p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <i class="fa-brands fa-aws fa-3x text-orange-400 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-white">AWS</h3>
+                </div>
+                <div class="skill-card p-6 rounded-lg bg-gray-900 hover:bg-gray-800 transition-colors">
+                    <i class="fa-brands fa-git-square fa-3x text-red-500 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-white">Git</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-fade-in">Featured Projects</h2>
+            <div class="space-y-12">
+                <!-- Project Card -->
+                <div class="max-w-3xl mx-auto bg-gray-900 rounded-xl shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:flex-shrink-0">
+                            <img class="h-48 w-full object-cover md:h-full md:w-48"
+                                src="https://via.placeholder.com/400x200.png?text=Project+1" alt="Project screenshot">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">E-commerce Platform</h3>
+                            <p class="text-gray-400 mb-4">React + Node.js + MongoDB fullstack application</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg">
+                                    View Code
+                                </a>
+                                <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg">
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more project cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-fade-in">Get in Touch</h2>
+            <form class="max-w-md mx-auto bg-gray-900 p-8 rounded-xl">
+                <div class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-400">Name</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-400">Message</label>
+                        <textarea id="message" rows="4"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md py-2 px-3 text-white focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm">
+                © 2023 [Your Name]. All rights reserved.<br>
+                Made with ❤️ and JavaScript
+            </p>
+        </div>
+    </footer>
+
+    <!-- Tailwind CSS Animations -->
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+    </style>
+</body>
+
+</html>

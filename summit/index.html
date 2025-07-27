@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Name — Portfolio</title>
+    <meta name="description" content="フルスタックエンジニアのポートフォリオ。プロダクト、スキル、経歴、コンタクト。" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
+                            400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+                            800: '#3730a3', 900: '#312e81'
+                        },
+                        accent: { 400: '#34d399', 500: '#22d3ee', 600: '#06b6d4', 700: '#0891b2' },
+                        ink: { 800: '#0b1220', 900: '#0a0f1f' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Apple Color Emoji', 'Segoe UI Emoji'],
+                        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+                    },
+                    boxShadow: {
+                        glow: '0 0 30px rgba(34,211,238,.35)',
+                        card: '0 10px 30px -10px rgba(0,0,0,.35)'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        /* オーロラ風バックグラウンド＆スクロールリビール */
+        .aurora {
+            position: absolute;
+            inset: -20% -20% auto -20%;
+            height: 60vh;
+            pointer-events: none;
+            filter: blur(60px);
+            background:
+                radial-gradient(600px 220px at 20% 15%, rgba(99, 102, 241, .25), transparent 60%),
+                radial-gradient(500px 200px at 80% 20%, rgba(34, 211, 238, .20), transparent 60%),
+                radial-gradient(480px 220px at 30% 85%, rgba(168, 85, 247, .18), transparent 60%);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-white text-slate-800 dark:bg-ink-900 dark:text-slate-100 selection:bg-brand-500/20 selection:text-brand-700">
+
+    <!-- 背景オーロラ -->
+    <div class="aurora"></div>
+
+    <!-- ナビゲーション -->
+    <header class="fixed top-0 inset-x-0 z-50">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+            <div
+                class="flex items-center justify-between rounded-2xl border border-slate-200/60 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-md px-4 py-3 shadow-card">
+                <a href="#" class="flex items-center gap-3">
+                    <div
+                        class="h-9 w-9 rounded-xl bg-gradient-to-tr from-brand-500 via-accent-500 to-fuchsia-500 shadow-glow">
+                    </div>
+                    <span
+                        class="font-extrabold tracking-tight text-lg bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-accent-500 to-fuchsia-500">Your
+                        Name</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-7 text-sm">
+                    <a href="#projects" class="hover:text-brand-500">Projects</a>
+                    <a href="#skills" class="hover:text-brand-500">Skills</a>
+                    <a href="#experience" class="hover:text-brand-500">Experience</a>
+                    <a href="#about" class="hover:text-brand-500">About</a>
+                    <a href="#contact" class="hover:text-brand-500">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button id="themeToggle" aria-label="テーマ切替"
+                        class="p-2 rounded-lg border border-slate-200/70 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10">
+                        <!-- sun/moon -->
+                        <svg id="iconSun" class="h-5 w-5 hidden dark:inline-block" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <circle cx="12" cy="12" r="4" />
+                            <path
+                                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                        </svg>
+                        <svg id="iconMoon" class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    </button>
+                    <a href="https://github.com/yourname" target="_blank"
+                        class="p-2 rounded-lg border border-slate-200/70 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10"
+                        aria-label="GitHub">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.48v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.53-1.11-1.53-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.58 2.38 1.13 2.96.86.09-.67.35-1.12.64-1.38-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05a9.16 9.16 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.64 1.03 2.76 0 3.95-2.34 4.81-4.57 5.06.36.32.69.94.69 1.9v2.82c0 .26.18.59.69.48A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2z" />
+                        </svg>
+                    </a>
+                    <button id="menuBtn"
+                        class="md:hidden p-2 rounded-lg border border-slate-200/70 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10"
+                        aria-label="メニュー">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 6h18M3 12h18M3 18h18" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobileMenu"
+                class="md:hidden mt-2 hidden rounded-2xl border border-slate-200/60 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur px-4 py-3">
+                <div class="flex flex-col gap-3 text-sm">
+                    <a class="py-2" href="#projects">Projects</a>
+                    <a class="py-2" href="#skills">Skills</a>
+                    <a class="py-2" href="#experience">Experience</a>
+                    <a class="py-2" href="#about">About</a>
+                    <a class="py-2" href="#contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <!-- ヒーロー -->
+        <section class="relative pt-36 md:pt-40">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="reveal">
+                    <p
+                        class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full border border-brand-500/30 text-brand-600 dark:text-brand-300 bg-brand-500/10">
+                        Open to work</p>
+                    <h1 class="mt-5 text-4xl md:text-6xl font-extrabold leading-tight">
+                        <span
+                            class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-accent-500 to-fuchsia-500">こんにちは、Your
+                            Name です。</span><br />
+                        フルスタックで、プロダクトを素早く届けます。
+                    </h1>
+                    <p class="mt-5 text-slate-600 dark:text-slate-300 max-w-xl">
+                        TypeScript/React/Next.js、Node.js/Go、AWSでスケールするプロダクトを構築。デザインとDXにこだわり、チームの速度を底上げします。
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="#projects"
+                            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-accent-600 text-white shadow-glow hover:shadow-lg">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                            作品を見る
+                        </a>
+                        <a href="#"
+                            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-300/70 dark:border-white/10 hover:bg-slate-100/70 dark:hover:bg-white/10">
+                            履歴書をダウンロード
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center gap-6 text-xs text-slate-500 dark:text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-glow"></span> 5+年の経験
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="h-2.5 w-2.5 rounded-full bg-accent-500 shadow-glow"></span> 12件のプロジェクト
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="h-2.5 w-2.5 rounded-full bg-fuchsia-500 shadow-glow"></span> リモート可
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="absolute -top-10 -right-6 h-40 w-40 rounded-full bg-accent-500/20 blur-3xl"></div>
+                    <div class="absolute -bottom-6 -left-8 h-40 w-40 rounded-full bg-fuchsia-500/20 blur-3xl"></div>
+
+                    <div
+                        class="relative rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-6 shadow-card">
+                        <div class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">Tech
+                            stack</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">TypeScript</span>
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">React</span>
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">Next.js</span>
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">Node.js</span>
+                            <span class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">Go</span>
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">AWS</span>
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">Docker</span>
+                            <span
+                                class="px-3 py-1 rounded-lg border border-slate-200/60 dark:border-white/10">Prisma</span>
+                        </div>
+
+                        <div
+                            class="mt-6 rounded-xl border border-slate-200/70 dark:border-white/10 bg-gradient-to-br from-brand-500/10 via-accent-500/10 to-fuchsia-500/10 p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm font-semibold">Live Preview</div>
+                                <span
+                                    class="text-xs px-2 py-1 rounded-md bg-black/5 dark:bg-white/10 backdrop-blur">/components/Dashboard.tsx</span>
+                            </div>
+                            <pre class="mt-3 text-xs leading-relaxed font-mono text-slate-700 dark:text-slate-200"><code>// sleek dashboard component
+export function Dashboard(){ 
+  const { data } = useSWR('/api/stats', fetcher)
+  return &lt;Card title="Metrics"&gt;
+    &lt;Sparkline data={data.trend} /&gt;
+    &lt;KPIs items={data.kpi} /&gt;
+  &lt;/Card&gt;
+}</code></pre>
+                        </div>
+
+                        <div class="mt-4 grid grid-cols-3 gap-3">
+                            <div class="rounded-xl border border-slate-200/70 dark:border-white/10 p-3 text-center">
+                                <div class="text-2xl font-extrabold">99.9%</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Uptime</div>
+                            </div>
+                            <div class="rounded-xl border border-slate-200/70 dark:border-white/10 p-3 text-center">
+                                <div class="text-2xl font-extrabold">~80ms</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">API latency</div>
+                            </div>
+                            <div class="rounded-xl border border-slate-200/70 dark:border-white/10 p-3 text-center">
+                                <div class="text-2xl font-extrabold">A+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">Lighthouse</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 text-emerald-600 dark:text-emerald-300 bg-emerald-500/10">パフォーマンス重視</span>
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-fuchsia-500/30 text-fuchsia-600 dark:text-fuchsia-300 bg-fuchsia-500/10">UI/UX</span>
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-500/30 text-accent-700 dark:text-accent-300 bg-accent-500/10">DX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="mt-24">
+            <div class="flex items-end justify-between gap-4">
+                <h2 class="text-2xl md:text-3xl font-extrabold">Projects</h2>
+                <a href="https://github.com/yourname?tab=repositories" class="text-sm hover:text-brand-500">GitHubで全部見る
+                    →</a>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Project Card -->
+                <article
+                    class="group reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur overflow-hidden hover:shadow-lg hover:shadow-brand-500/10 transition">
+                    <div class="relative h-40 bg-gradient-to-br from-brand-500/30 via-accent-500/20 to-fuchsia-500/30">
+                        <div
+                            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(600px_200px_at_80%_-10%,rgba(34,211,238,.35),transparent)]">
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between">
+                            <h3 class="font-bold text-lg">Analytico</h3>
+                            <span
+                                class="text-xs px-2 py-1 rounded-md border border-slate-200/60 dark:border-white/10">2024</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                            SaaS向けリアルタイム分析ダッシュボード。Next.js + Edge Functionsで爆速。
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Next.js</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">tRPC</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Postgres</span>
+                        </div>
+                        <div class="mt-4 flex gap-3">
+                            <a class="text-sm inline-flex items-center gap-1 hover:text-brand-500" target="_blank"
+                                href="#">Live</a>
+                            <a class="text-sm inline-flex items-center gap-1 hover:text-brand-500" target="_blank"
+                                href="#">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article
+                    class="group reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur overflow-hidden hover:shadow-lg hover:shadow-brand-500/10 transition">
+                    <div class="relative h-40 bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-sky-500/20">
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between">
+                            <h3 class="font-bold text-lg">EdgeMail</h3>
+                            <span
+                                class="text-xs px-2 py-1 rounded-md border border-slate-200/60 dark:border-white/10">2023</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                            大量配信を捌くメール基盤。Go + NATS + AWSで水平スケール。
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Go</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">NATS</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">AWS</span>
+                        </div>
+                        <div class="mt-4 flex gap-3">
+                            <a class="text-sm inline-flex items-center gap-1 hover:text-brand-500" target="_blank"
+                                href="#">サイト</a>
+                            <a class="text-sm inline-flex items-center gap-1 hover:text-brand-500" target="_blank"
+                                href="#">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article
+                    class="group reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur overflow-hidden hover:shadow-lg hover:shadow-brand-500/10 transition">
+                    <div class="relative h-40 bg-gradient-to-br from-rose-500/20 via-fuchsia-500/20 to-violet-500/20">
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-start justify-between">
+                            <h3 class="font-bold text-lg">PromptLab</h3>
+                            <span
+                                class="text-xs px-2 py-1 rounded-md border border-slate-200/60 dark:border-white/10">2023</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                            LLMプロンプトの実験/評価SaaS。A/Bテスト・バージョニング・トレーシング対応。
+                        </p>
+                        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Next.js</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">OpenAI</span>
+                        </div>
+                        <div class="mt-4 flex gap-3">
+                            <a class="text-sm inline-flex items-center gap-1 hover:text-brand-500" target="_blank"
+                                href="#">Live</a>
+                            <a class="text-sm inline-flex items-center gap-1 hover:text-brand-500" target="_blank"
+                                href="#">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- もっとカードを増やしたい場合は同様に追加 -->
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="mt-24">
+            <h2 class="text-2xl md:text-3xl font-extrabold">Skills</h2>
+
+            <div class="mt-6 grid md:grid-cols-2 gap-6">
+                <div
+                    class="reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-5">
+                    <div class="font-semibold text-sm text-slate-500 dark:text-slate-400">Frontend</div>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">TypeScript</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">React</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Next.js</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Tailwind CSS</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Zustand</span>
+                    </div>
+                    <div class="mt-5 space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs"><span>React</span><span>Advanced</span></div>
+                            <div class="mt-2 h-2 rounded bg-slate-200/60 dark:bg-white/10">
+                                <div class="h-2 w-4/5 rounded bg-gradient-to-r from-brand-500 to-accent-600"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs"><span>Performance</span><span>Advanced</span>
+                            </div>
+                            <div class="mt-2 h-2 rounded bg-slate-200/60 dark:bg-white/10">
+                                <div class="h-2 w-4/5 rounded bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-5">
+                    <div class="font-semibold text-sm text-slate-500 dark:text-slate-400">Backend / Cloud</div>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Node.js</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Go</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">PostgreSQL</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Redis</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">AWS</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10">Docker</span>
+                    </div>
+                    <div class="mt-5 space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs"><span>System design</span><span>Advanced</span>
+                            </div>
+                            <div class="mt-2 h-2 rounded bg-slate-200/60 dark:bg-white/10">
+                                <div class="h-2 w-3/4 rounded bg-gradient-to-r from-fuchsia-400 to-fuchsia-600"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs"><span>DevOps</span><span>Intermediate</span></div>
+                            <div class="mt-2 h-2 rounded bg-slate-200/60 dark:bg-white/10">
+                                <div class="h-2 w-2/3 rounded bg-gradient-to-r from-cyan-400 to-cyan-600"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="mt-24">
+            <h2 class="text-2xl md:text-3xl font-extrabold">Experience</h2>
+
+            <div class="mt-8 relative">
+                <div
+                    class="absolute left-4 md:left-1/2 md:-translate-x-1/2 h-full w-0.5 bg-slate-200/70 dark:bg-white/10">
+                </div>
+                <div class="space-y-10">
+                    <!-- item -->
+                    <div class="reveal relative md:grid md:grid-cols-2 md:gap-10">
+                        <div class="hidden md:block"></div>
+                        <div
+                            class="rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-5 shadow-card">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold">Senior Frontend Engineer · Awesome Inc.</div>
+                                    <div class="text-sm text-slate-500 dark:text-slate-400">React/Next.js · Design
+                                        System</div>
+                                </div>
+                                <div
+                                    class="text-xs px-2 py-1 rounded-md border border-slate-200/60 dark:border-white/10">
+                                    2022 - 現在</div>
+                            </div>
+                            <ul class="mt-3 list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                                <li>デザインシステム導入でUI工数を40%削減</li>
+                                <li>SSR最適化で初期描画2.4s → 1.2sへ短縮</li>
+                                <li>社内CLIでDX改善、PRリードタイム32%短縮</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="reveal relative md:grid md:grid-cols-2 md:gap-10">
+                        <div
+                            class="rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-5 shadow-card">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold">Software Engineer · Startup XYZ</div>
+                                    <div class="text-sm text-slate-500 dark:text-slate-400">Go/Node.js · Microservices
+                                    </div>
+                                </div>
+                                <div
+                                    class="text-xs px-2 py-1 rounded-md border border-slate-200/60 dark:border-white/10">
+                                    2020 - 2022</div>
+                            </div>
+                            <ul class="mt-3 list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                                <li>メッセージ基盤刷新で処理能力10x、コスト-35%</li>
+                                <li>Chaos実験とSLOで可用性99.95%を維持</li>
+                            </ul>
+                        </div>
+                        <div class="hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="mt-24">
+            <h2 class="text-2xl md:text-3xl font-extrabold">About</h2>
+            <div class="mt-6 grid md:grid-cols-2 gap-6">
+                <div
+                    class="reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-6">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="h-14 w-14 rounded-xl bg-gradient-to-tr from-brand-500 via-accent-500 to-fuchsia-500">
+                        </div>
+                        <div>
+                            <div class="font-bold text-lg">Your Name</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">フルスタックエンジニア / 東京</div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        B2B SaaS開発が得意。仮説検証からプロダクション運用まで一気通貫で担当します。性能・アクセシビリティ・開発者体験に強い関心があります。
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 text-xs">リーダーシップ</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 text-xs">プロダクト思考</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/10 text-xs">品質/テスト</span>
+                    </div>
+                </div>
+
+                <div
+                    class="reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-6">
+                    <div class="font-semibold text-sm text-slate-500 dark:text-slate-400">趣味と最近の関心</div>
+                    <ul class="mt-3 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                        <li>🏃 ランニング / ⛰️ トレイル</li>
+                        <li>🎧 Lo-fi × コード書き</li>
+                        <li>🧪 LLMの観測性 / プロンプト評価</li>
+                        <li>🧰 CLI / DX ツール作り</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="mt-24 mb-16">
+            <h2 class="text-2xl md:text-3xl font-extrabold">Contact</h2>
+
+            <div class="mt-6 grid md:grid-cols-2 gap-6">
+                <div
+                    class="reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-6">
+                    <div class="text-sm text-slate-600 dark:text-slate-300">お仕事の相談や雑談もお気軽に！</div>
+                    <div class="mt-4 flex items-center gap-3">
+                        <div
+                            class="rounded-xl border border-slate-200/70 dark:border-white/10 px-3 py-2 font-mono text-sm">
+                            your.name@example.com</div>
+                        <button id="copyEmail"
+                            class="px-3 py-2 rounded-xl border border-slate-200/70 dark:border-white/10 hover:bg-slate-100/70 dark:hover:bg-white/10 text-sm">コピー</button>
+                    </div>
+                    <div class="mt-4 flex items-center gap-4 text-sm">
+                        <a class="hover:text-brand-500" target="_blank" href="https://x.com/yourname">X</a>
+                        <a class="hover:text-brand-500" target="_blank" href="https://github.com/yourname">GitHub</a>
+                        <a class="hover:text-brand-500" target="_blank"
+                            href="https://www.linkedin.com/in/yourname/">LinkedIn</a>
+                    </div>
+                </div>
+
+                <form
+                    class="reveal rounded-2xl border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur p-6 space-y-4"
+                    action="mailto:your.name@example.com" method="post" enctype="text/plain">
+                    <div>
+                        <label class="text-sm">お名前</label>
+                        <input name="name" required
+                            class="mt-1 w-full rounded-lg border border-slate-200/70 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 py-2 outline-none focus:ring-2 ring-brand-500/40" />
+                    </div>
+                    <div>
+                        <label class="text-sm">メール</label>
+                        <input type="email" name="email" required
+                            class="mt-1 w-full rounded-lg border border-slate-200/70 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 py-2 outline-none focus:ring-2 ring-brand-500/40" />
+                    </div>
+                    <div>
+                        <label class="text-sm">メッセージ</label>
+                        <textarea name="message" rows="4" required
+                            class="mt-1 w-full rounded-lg border border-slate-200/70 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 py-2 outline-none focus:ring-2 ring-brand-500/40"></textarea>
+                    </div>
+                    <button
+                        class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-accent-600 text-white shadow-glow">
+                        送信する
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200/70 dark:border-white/10">
+        <div
+            class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 text-sm text-slate-500 dark:text-slate-400 flex items-center justify-between">
+            <div>© <span id="year"></span> Your Name. All rights reserved.</div>
+            <a href="#" class="hover:text-brand-500">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script>
+        // テーマ初期化
+        const initTheme = () => {
+            const stored = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (stored === 'dark' || (!stored && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        };
+        initTheme();
+
+        // トグル
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // モバイルメニュー
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // スクロールリビール
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('show');
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 年
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // メールコピー
+        const copyBtn = document.getElementById('copyEmail');
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText('your.name@example.com');
+                copyBtn.textContent = 'コピーしました！';
+                setTimeout(() => copyBtn.textContent = 'コピー', 1800);
+            } catch (e) {
+                alert('コピーできませんでした');
+            }
+        });
+    </script>
+</body>
+
+</html>
